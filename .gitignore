@@ -1,4 +1,13 @@
 # Created by .ignore support plugin (hsz.mobi)
-/*
-!/wp-content/themes/twentysixteen/map.php
 !.gitignore
+/*
+!wp-content/
+plugins
+languages
+index.php
+uploads
+!themes/
+twentyfifteen
+twentyfourteen
+/wp-content/themes/twentysixteen/*
+!map.php
