@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-!.gitignore
 /*
+!wp.sql
 !wp-content/
 plugins
 languages
