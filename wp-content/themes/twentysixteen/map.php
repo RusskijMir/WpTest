@@ -23,9 +23,15 @@ get_header(); ?>
 
         <?php
 
+        $categories = get_region_categories();
 
+        var_dump($categories);
 
-        $args = array('category_name' => 'политика');
+        if(!empty($categories)) {
+            //Вывод карты
+        } else {
+            //Сообщение об отсутствии карты
+        }
 
         $query = new WP_Query($args);
 

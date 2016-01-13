@@ -11,3 +11,4 @@ twentyfifteen
 twentyfourteen
 /wp-content/themes/twentysixteen/*
 !map.php
+!functions.php
