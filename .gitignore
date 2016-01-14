@@ -12,3 +12,5 @@ twentyfourteen
 /wp-content/themes/twentysixteen/*
 !map.php
 !functions.php
+!js/jquery-jvectormap-2.0.3.min
+!js/jquery-jvectormap-world-mill-en
