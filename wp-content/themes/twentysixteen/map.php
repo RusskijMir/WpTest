@@ -20,32 +20,6 @@ get_header(); ?>
     <main id="main" class="site-main" role="main">
 
         <h1><?php the_title(); ?></h1>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-world-mill-en.js"></script>
-
-        <div id="map" style="height: 550px">
-            
-        </div>
-        <style>
-            .jvectormap-container {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-            }
-            .jvectormap-container svg {
-                flex-grow: 1;
-            }
-        </style>
-        <script>
-            $(function(){
-                var map = new $('#map').vectorMap({onRegionClick: function(event, code) {
-                    var map = $('#map').vectorMap('get', 'mapObject');
-                    alert(code);
-                }});
-            });
-        </script>
 
         <?php
 
@@ -55,6 +29,36 @@ get_header(); ?>
 
         if(!empty($categories)) {
             //Вывод карты
+            ?>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-2.0.3.min.js"></script>
+            <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-world-mill-en.js"></script>
+            
+            <div id="map" style="height: 550px"></div>
+            
+            <style>
+                .jvectormap-container {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                }
+                .jvectormap-container svg {
+                    flex-grow: 1;
+                }
+            </style>
+            <form action="" method="post" id="form">
+                <input type="text" id="categoryId">
+            </form>
+            <script>
+                $(function(){
+                    var map = new $('#map').vectorMap({onRegionClick: function(event, code) {
+                        var map = $('#map').vectorMap('get', 'mapObject');
+                        document.getElementById('categoryId').value = code;
+                        document.getElementById('form').submit();
+                    }});
+                });
+            </script>
+        <?php
         } else {
             //Сообщение об отсутствии карты
         }
