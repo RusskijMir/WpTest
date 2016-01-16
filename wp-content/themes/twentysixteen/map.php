@@ -25,8 +25,6 @@ get_header(); ?>
 
         $categories = get_region_categories();
 
-        var_dump($categories);
-
         if(!empty($categories)) {
             //Вывод карты
             ?>
@@ -46,7 +44,7 @@ get_header(); ?>
                 }
             </style>
             <form action="" method="post" id="form">
-                <input type="text" id="categoryId">
+                <input type="text" id="categoryId" name="categoryId">
             </form>
             <script>
                 $(function(){
@@ -62,16 +60,21 @@ get_header(); ?>
             //Сообщение об отсутствии карты
         }
 
-        $query = new WP_Query($args);
+        if(isset($_POST['categoryId'])) {
 
-        while ( $query->have_posts() ) {
-            $query->the_post();
+            $args['cat'] = intval($_POST['categoryId']);
 
-            get_template_part( 'template-parts/content', get_post_format() );
+            $query = new WP_Query($args);
 
+            while ( $query->have_posts() ) {
+                $query->the_post();
+
+                get_template_part( 'template-parts/content', get_post_format() );
+
+            }
+
+            wp_reset_postdata();
         }
-
-        wp_reset_postdata();
 
         ?>
 
