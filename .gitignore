@@ -1,16 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-/*
-!wp.sql
-!wp-content/
-plugins
-languages
-index.php
-uploads
-!themes/
-twentyfifteen
-twentyfourteen
-/wp-content/themes/twentysixteen/*
-!map.php
-!functions.php
-!js/jquery-jvectormap-2.0.3.min
-!js/jquery-jvectormap-world-mill-en
+*.*
+!/wp-content/themes/twentysixteen/map.php
+!/wp-content/themes/twentysixteen/functions.php
+!/wp-content/themes/twentysixteen/js/jquery-jvectormap-2.0.3.min.js
+!/wp-content/themes/twentysixteen/js/jquery-jvectormap-world-mill-en.js
+
+
