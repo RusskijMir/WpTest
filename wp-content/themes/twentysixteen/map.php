@@ -30,7 +30,6 @@ get_header(); ?>
         if(!empty($categories)) {
             //Вывод карты
             ?>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
             <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-2.0.3.min.js"></script>
             <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-world-mill-en.js"></script>
             

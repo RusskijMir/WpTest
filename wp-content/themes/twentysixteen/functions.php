@@ -370,6 +370,9 @@ function twentysixteen_content_image_sizes_attr( $sizes, $size ) {
 }
 add_filter( 'wp_calculate_image_sizes', 'twentysixteen_content_image_sizes_attr', 10 , 2 );
 
+add_action('init', 'modify_jquery');
+
+
 /**
  * Add custom image sizes attribute to enhance responsive image functionality
  * for post thumbnails
@@ -422,4 +425,19 @@ function get_region_categories() {
     }
 
     return $regionCategories;
+}
+
+function modify_jquery() {
+    if (!is_admin()) {
+
+        // comment out the next two lines to load the local copy of jQuery
+
+        wp_deregister_script('jquery');
+
+        wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js', false, '1.8.1');
+
+        wp_enqueue_script('jquery');
+
+    }
+
 }
