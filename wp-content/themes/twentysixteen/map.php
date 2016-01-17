@@ -48,11 +48,11 @@ get_header(); ?>
             </form>
             <script>
                 $(function(){
-                    var map = new $('#map').vectorMap({onRegionClick: function(event, code) {
-                        var map = $('#map').vectorMap('get', 'mapObject');
-                        document.getElementById('categoryId').value = code;
+                    var map = new $('#map').vectorMap();
+                    $('path').click(function(event) {
+                        document.getElementById('categoryId').value = $(this).attr('data-code');
                         document.getElementById('form').submit();
-                    }});
+                    })
                 });
             </script>
         <?php
