@@ -48,12 +48,21 @@ get_header(); ?>
             </form>
             <script>
                 $(function(){
+
                     var map = new $('#map').vectorMap();
+
                     $('path').click(function(event) {
+
                         var catID = $(this).attr('data-code');
-//                        document.getElementById('form').submit();
+
+                        $('path').each(function() {
+                            $(this).css('fill', '#FFFFFF');
+                        })
+
+                        $(this).css('fill', '#00C853');
 
                         var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); //must echo it ?>';
+
                         jQuery.ajax({
                             type: 'POST',
                             url: ajaxurl,
@@ -63,6 +72,7 @@ get_header(); ?>
                                 return false;
                             }
                         });
+                        
                     })
                 });
             </script>
