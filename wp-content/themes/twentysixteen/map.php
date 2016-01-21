@@ -28,8 +28,8 @@ get_header(); ?>
         if(!empty($categories)) {
             //Вывод карты
             ?>
-            <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-2.0.3.min.js"></script>
-            <script src="..\wp-content\themes\twentysixteen\js\jquery-jvectormap-world-mill-en.js"></script>
+            <script src="../wp-content/themes/twentysixteen/js/jquery-jvectormap-2.0.3.min.js"></script>
+            <script src="../wp-content/themes/twentysixteen/js/jquery-jvectormap-world-mill-en.js"></script>
             
             <div id="map" style="height: 550px"></div>
             
@@ -50,30 +50,28 @@ get_header(); ?>
                 $(function(){
                     var map = new $('#map').vectorMap();
                     $('path').click(function(event) {
-                        document.getElementById('categoryId').value = $(this).attr('data-code');
-                        document.getElementById('form').submit();
+                        var catID = $(this).attr('data-code');
+//                        document.getElementById('form').submit();
+
+                        var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); //must echo it ?>';
+                        jQuery.ajax({
+                            type: 'POST',
+                            url: ajaxurl,
+                            data: {"action": "load-filter", cat: catID },
+                            success: function(response) {
+                                jQuery("#category-post-content").html(response);
+                                return false;
+                            }
+                        });
                     })
                 });
             </script>
+            <div id="category-post-content">
+
+            </div>
         <?php
         } else {
             //Сообщение об отсутствии карты
-        }
-
-        if(isset($_POST['categoryId'])) {
-
-            $args['cat'] = intval($_POST['categoryId']);
-
-            $query = new WP_Query($args);
-
-            while ( $query->have_posts() ) {
-                $query->the_post();
-
-                get_template_part( 'template-parts/content', get_post_format() );
-
-            }
-
-            wp_reset_postdata();
         }
 
         ?>

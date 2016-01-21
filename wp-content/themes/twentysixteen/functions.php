@@ -439,5 +439,32 @@ function modify_jquery() {
         wp_enqueue_script('jquery');
 
     }
+}
 
+add_action( 'wp_ajax_nopriv_load-filter', 'prefix_load_cat_posts' );
+add_action( 'wp_ajax_load-filter', 'prefix_load_cat_posts' );
+function prefix_load_cat_posts () {
+    $cat_id = $_POST[ 'cat' ];
+    $args = array (
+        'cat' => $cat_id,
+    );
+
+    $query = new WP_Query($args);
+
+    ob_start ();
+
+    while ( $query->have_posts() ) {
+        $query->the_post();
+
+        get_template_part( 'template-parts/content', get_post_format() );
+
+    }
+
+    wp_reset_postdata();
+
+    $response = ob_get_contents();
+    ob_end_clean();
+
+    echo $response;
+    die(1);
 }
